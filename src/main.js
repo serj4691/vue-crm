@@ -33,14 +33,14 @@ Vue.directive('tooltip', tooltipDirective)
 
 
 firebase.initializeApp({
-  apiKey: "AIzaSyAur4kJOU9_mM_Hjo4WgJoKRq4ngvU8cy8",
-  authDomain: "w7633255512531.firebaseapp.com",
-  databaseURL: "https://w7633255512531-default-rtdb.firebaseio.com",
-  projectId: "w7633255512531",
-  storageBucket: "w7633255512531.appspot.com",
-  messagingSenderId: "650832468073",
-  appId: "1:650832468073:web:81a1d26b6f6d1583c62af8",
-  measurementId: "G-NS7DN6TVCM"
+  apiKey: "",
+  authDomain: "*.firebaseapp.com",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: ""
 })
 
 // fixer 0c49cd9daf58d15a6cd897cc669f92fb
