@@ -75,6 +75,9 @@ export default {
      name: '',
     agree: false
   }),
+  metaInfo() {
+    return { title: this.$title('Register_Title') }
+  },
   validations: {
      email: { email, required },
      password: { required, minLength: minLength(6) },

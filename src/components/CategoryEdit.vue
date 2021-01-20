@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Редактировать</h4>
+        <h4>{{'Cat_edit'|localize}}</h4>
       </div>
 
       <form @submit.prevent="submitHandler">
@@ -12,7 +12,7 @@
               {{ cat.title }}
             </option>
           </select>
-          <label>Выберите категорию</label>
+          <label>{{'Cat_choose'|localize}}</label>
         </div>
 
         <div class="input-field">
@@ -22,11 +22,11 @@
             v-model="title"
             :class="{ invalid: $v.title.$dirty && !$v.title.required }"
           />
-          <label for="name">Название категории</label>
+          <label for="name">{{'Cat_create'|localize}}</label>
           <span
             v-if="$v.title.$dirty && !$v.title.required"
             class="helper-text invalid"
-            >Введите название</span
+            >{{'Enter_name'|localize}}</span
           >
         </div>
 
@@ -37,16 +37,16 @@
             v-model.number="limit"
             :class="{ invalid: $v.limit.$dirty && !$v.limit.minValue }"
           />
-          <label for="limit">Лимит</label>
+          <label for="limit">{{'Cat_limit'|localize}}</label>
           <span
             class="helper-text invalid"
             v-if="$v.limit.$dirty && !$v.limit.minValue"
-            >Минимальное значение {{ $v.limit.$params.minValue.min }}</span
+            >{{'Record_min_val'|localize}} {{ $v.limit.$params.minValue.min }}</span
           >
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Обновить
+          {{'Update'|localize}}
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -55,45 +55,46 @@
 </template>
 
 <script>
-import M from "materialize-css";
-import { required, minValue } from "vuelidate/lib/validators";
+import M from 'materialize-css'
+import { required, minValue } from 'vuelidate/lib/validators'
+import localizeFilter from '@/filters/localize.filter'
 export default {
   props: {
     categories: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   data: () => ({
     select: null,
-    title: "",
+    title: '',
     limit: 100,
-    current: null,
+    current: null
   }),
   validations: {
     title: { required },
-    limit: { minValue: minValue(100) },
+    limit: { minValue: minValue(100) }
   },
   created() {
-    const { id, title, limit } = this.categories[0];
-    this.current = id;
-    this.title = title;
-    this.limit = limit;
+    const { id, title, limit } = this.categories[0]
+    this.current = id
+    this.title = title
+    this.limit = limit
   },
   watch: {
     current(catId) {
-      const { title, limit } = this.categories.find((c) => c.id === catId);
-      this.title = title;
-      this.limit = limit;
-    },
+      const { title, limit } = this.categories.find(c => c.id === catId)
+      this.title = title
+      this.limit = limit
+    }
   },
   mounted() {
-    this.select = M.FormSelect.init(this.$refs.select);
-    M.updateTextFields();
+    this.select = M.FormSelect.init(this.$refs.select)
+    M.updateTextFields()
   },
   destroyed() {
     if (this.select && this.select.destroy) {
-      this.select.destroy();
+      this.select.destroy()
     }
   },
   methods: {
@@ -109,11 +110,12 @@ export default {
           limit: this.limit
         }
         await this.$store.dispatch('updateCategory', categoryData)
-        this.$message('Категория успешно обновлена')
+        this.$message(localizeFilter('Cat_success'))
         this.$emit('updated', categoryData)
-      } catch (e) { console.log(e) }
-      
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
-};
+}
 </script>

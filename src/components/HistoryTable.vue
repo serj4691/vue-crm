@@ -2,12 +2,12 @@
   <table>
     <thead>
       <tr>
-        <th>#</th>
-        <th>Сумма</th>
-        <th>Дата</th>
-        <th>Категория</th>
-        <th>Тип</th>
-        <th>Открыть</th>
+        <th>№</th>
+        <th>{{ 'Table_Summa'|localize }}</th>
+        <th>{{ 'Table_date'|localize }}</th>
+        <th>{{ 'Table_category'|localize }}</th>
+        <th>{{ 'Table_type'|localize }}</th>
+        <th>{{ 'Table_open'|localize }}</th>
       </tr>
     </thead>
 
@@ -24,7 +24,7 @@
         </td>
         <td>
           <button 
-              v-tooltip="'Посмотреть запись'"
+              v-tooltip="'Table_watch' "
               class="btn-small btn" 
               @click="$router.push('/detail/' + rec.id)">
             <i class="material-icons">open_in_new</i>
@@ -41,9 +41,6 @@ export default {
     records: {
       type: Array,
       required: true
-    },
-    number: {
-      type: Number
     }
   }
 }

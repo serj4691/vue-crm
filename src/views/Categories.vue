@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{'Menu_Category'|localize}}</h3>
     </div>
     <div class="row">
       <section>
@@ -15,7 +15,7 @@
                 :key="categories.length + updateCount"
                 @updated="updateCat"
           />
-          <p v-else class="center">Категорий нет еще</p>
+          <p v-else class="center">{{'Category_not'|localize}}</p>
         </div>
       </section>
     </div>
@@ -32,6 +32,9 @@ export default {
     loading: true,
     updateCount: 0
   }),
+  metaInfo() {
+    return { title: this.$title('Menu_Category') }
+  },
   async mounted() {
     this.categories = await this.$store.dispatch("fetchCategories")
     this.loading = false
